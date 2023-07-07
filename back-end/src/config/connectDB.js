@@ -7,6 +7,8 @@ const sequelize = new Sequelize("bookingcare", "root", null, {
   logging: false
 });
 
+
+
 let connectDB = async () => {
   try { 
     await sequelize.authenticate();
