@@ -13,7 +13,8 @@ import {
 import { path } from "../utils";
 
 import Home from "../routes/Home";
-import Login from "../routes/Login";
+// import Login from "../routes/Login";
+import Login from "./Auth/Login";
 import Header from "./Header/Header";
 import System from "../routes/System";
 
@@ -43,6 +44,7 @@ class App extends Component {
     return (
       <Fragment>
         <Router history={history}>
+          {/* history: giu lai data*/}
           <div className="main-container">
             <ConfirmModal />
             {this.props.isLoggedIn && <Header />}
