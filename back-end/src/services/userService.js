@@ -5,14 +5,17 @@ let handleUserLogin = (email, password) => {
   return new Promise(async (resolve, reject) => {
     try {
       let userData = {};
+
       let isExit = await checkUserEmail(email);
+
       if (isExit) {
-        // user ton tai
         let user = await db.User.findOne({
           attributes: ["email", "roleId", "password"],
           where: { email: email },
           raw: true,
         });
+
+        // kt user co ton tai kh
         if (user) {
           // so sanh pw
           let check = await bcrypt.compareSync(password, user.password);
@@ -23,6 +26,7 @@ let handleUserLogin = (email, password) => {
             delete user.password;
             userData.user = user;
           } else {
+            //
             userData.errCode = 3;
             userData.errMessage = `Wrong password`;
           }
@@ -60,5 +64,4 @@ let checkUserEmail = (userEmail) => {
 };
 module.exports = {
   handleUserLogin: handleUserLogin,
-  checkUserEmail: checkUserEmail,
 };

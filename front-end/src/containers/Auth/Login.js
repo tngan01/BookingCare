@@ -5,7 +5,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
-
+import { handleLoginApi } from "../../services/userService";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class Login extends Component {
       username: "",
       password: "",
       isShowPassword: false,
+      errMessage: "",
     };
   }
 
@@ -26,14 +27,35 @@ class Login extends Component {
       password: event.target.value,
     });
   };
-  handleLogin = () => {
-    console.log(
-      "username: ",
-      this.state.username,
-      "password: ",
-      this.state.password
-    );
+
+  handleLogin = async () => {
+    //clear loi truoc khi login
+    this.setState({
+      errMessage: "",
+    });
+
+    try {
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if (data && data.errData !== 0) {
+        this.setState({
+          errMessage: data.message,
+        });
+      }
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user);
+        console.log("Login succeeds");
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.data) {
+          this.setState({
+            errMessage: error.response.data.message,
+          });
+        }
+      }
+    }
   };
+
   handleShowHidePassword = () => {
     this.setState({
       isShowPassword: !this.state.isShowPassword,
@@ -79,6 +101,10 @@ class Login extends Component {
                 </span>
               </div>
             </div>
+            <div className="col-12" style={{ color: "red" }}>
+              {this.state.errMessage}
+            </div>
+
             <div className="col-12">
               <button
                 className="btn-login"
@@ -89,6 +115,7 @@ class Login extends Component {
                 Login
               </button>
             </div>
+
             <div className="col-12">
               <span className="forgot-password">Frgot your password?</span>
             </div>
@@ -115,9 +142,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    // userLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfor) =>
+      dispatch(actions.userLoginSuccess(userInfor)),
   };
 };
 

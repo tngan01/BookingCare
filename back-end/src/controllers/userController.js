@@ -14,11 +14,13 @@ let handleLogin = async (req, res) => {
       message: "Missing inputs parameter!",
     });
   }
+
+  // dung user,pw
   let userData = await userService.handleUserLogin(email, pasword);
   return res.status(200).json({
     errCode: userData.errCode,
     message: userData.errMessage,
-    user: userData ? userData.user : {},
+    user: userData.user ? userData.user : {},
   });
 };
 module.exports = {
