@@ -104,17 +104,20 @@ let getAllUsers = (userId) => {
   });
 };
 
+// handleCreateNewUser
 let createNewUser = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       // kt email co ton tai khong
       let check = await checkUserEmail(data.email);
+
       if (check === true) {
         resolve({
           errCode: 1,
           message: "Your email is already in used, please try another email!",
         });
       }
+      //
       let hashPasswordFromBcrypt = await hashUserPassword(data.password);
       await db.User.create({
         email: data.email,
@@ -135,6 +138,8 @@ let createNewUser = (data) => {
     }
   });
 };
+
+//handleEditUser
 
 let updateUserData = (data) => {
   return new Promise(async (resolve, reject) => {
@@ -157,7 +162,9 @@ let updateUserData = (data) => {
         user.firstName = data.firstName;
         user.lastName = data.lastName;
         user.address = data.address;
+
         await user.save();
+
         resolve({
           errCode: 0,
           message: "Update the user succeeds!",
@@ -168,12 +175,15 @@ let updateUserData = (data) => {
           errMessage: `User's not found!`,
         });
       }
+
       await db.User.update({});
     } catch (e) {
       reject(e);
     }
   });
 };
+
+//handleDeletetUser
 
 let deleteUser = (userId) => {
   return new Promise(async (resolve, reject) => {
