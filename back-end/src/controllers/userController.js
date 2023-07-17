@@ -42,7 +42,36 @@ let handleGetAllUsers = async (req, res) => {
     users,
   });
 };
+
+// create new user
+let handleCreateNewUser = async (req, res) => {
+  let message = await userService.createNewUser(req.body);
+  return res.status(200).json(message);
+};
+
+// edit user
+let handleEditUser = async (req, res) => {
+  let data = req.body; //lay tat ca cac input da dat name
+  let message = await userService.updateUserData(data);
+  return res.status(200).json(message);
+};
+
+// delete user
+let handleDeleteNewUser = async (req, res) => {
+  if (!req.body.id) {
+    return res.status(200).json({
+      errCode: 1,
+      errMessage: "Missing requires parameters!",
+    });
+  }
+  let message = await userService.deleteUser(req.body.id);
+  return res.status(200).json(message);
+};
+
 module.exports = {
   handleLogin: handleLogin,
   handleGetAllUsers: handleGetAllUsers,
+  handleCreateNewUser: handleCreateNewUser,
+  handleEditUser: handleEditUser,
+  handleDeleteNewUser: handleDeleteNewUser,
 };
