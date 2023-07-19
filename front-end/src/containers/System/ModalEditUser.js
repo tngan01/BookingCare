@@ -3,33 +3,34 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { emitter } from "../../utils/emitter";
+import _ from "lodash";
 
-class ModalUser extends Component {
+class ModalEditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       email: "",
       password: "",
       firstName: "",
       lastName: "",
       address: "",
     };
-    this.listenToEmitter();
-  }
-  listenToEmitter() {
-    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
-      // reset state
-      this.setState({
-        email: "",
-        password: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-      });
-    });
   }
   componentDidMount() {
-    console.log("mounting modal");
+    let user = this.props.currentUser; // kt user {} cos rong khong ( sd lodash)
+    if (user && !_.isEmpty(user)) {
+      this.setState({
+        id: user.id, // dung khi goi api
+        email: user.email,
+        password: "harcode",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: user.address,
+      });
+    }
+
+    console.log("mounting modal", this.props.currentUser);
   }
 
   toggle = () => {
@@ -37,20 +38,6 @@ class ModalUser extends Component {
   };
 
   handleOnChageInput = (event, id) => {
-    //  modify truc tiep: this.state
-
-    // this.state[id] = event.target.value; //this.state[id] === this.state.email
-    // this.setState(
-    //   {
-    //     ...this.state, // ...copy. sao khi sua doi state va muon capnhat thi dung
-    //   },
-    //   () => {
-    //     console.log("check", this.state);
-    //   }
-    // );
-    // console.log(event.target.value, id);
-
-    // modify gian tiep: copy state-> modify
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
 
@@ -83,14 +70,13 @@ class ModalUser extends Component {
     return isValid;
   };
 
-  // them user
-  handleAddNewUser = () => {
+  // luu user
+  handleSaveUser = () => {
     let isValid = this.checkValideInput();
     if (isValid === true) {
       // call api
-      this.props.createNewUser(this.state);
+      this.props.editUser(this.state);
     }
-    console.log("data", this.state);
   };
   render() {
     return (
@@ -107,7 +93,7 @@ class ModalUser extends Component {
             this.toggle();
           }}
         >
-          CREATE A NEW USER
+          EDIT A USER
         </ModalHeader>
         <ModalBody>
           <div className="modal-user-body">
@@ -130,6 +116,7 @@ class ModalUser extends Component {
                   this.handleOnChageInput(event, "password");
                 }}
                 value={this.state.password}
+                disabled
               ></input>
             </div>
 
@@ -172,10 +159,10 @@ class ModalUser extends Component {
             clor="primary"
             className="px-3"
             onClick={() => {
-              this.handleAddNewUser();
+              this.handleSaveUser();
             }}
           >
-            Add new
+            Save changse
           </button>
           <button
             clor="secondary"
@@ -200,4 +187,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
