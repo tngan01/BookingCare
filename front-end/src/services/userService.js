@@ -13,4 +13,20 @@ const createNewUserService = (data) => {
   console.log("check", data);
   return axios.post("/api/create-new-user", data);
 };
-export { handleLoginApi, getAllUsers, createNewUserService };
+
+// userManage - handleDeleteUser
+const deleteNewUserService = (userId) => {
+  return axios.delete("/api/delete-user", { data: { id: userId } });
+};
+
+// ip trong userManage  edit
+const editUserService = (inputData) => {
+  return axios.put("/api/edit-user", inputData);
+};
+export {
+  handleLoginApi,
+  getAllUsers,
+  createNewUserService,
+  deleteNewUserService,
+  editUserService,
+};
