@@ -14,12 +14,13 @@ class HomeHeader extends Component {
   };
   render() {
     let language = this.props.language;
+    console.log("userInfor:", this.props.userInfor);
     return (
       <React.Fragment>
         <div className="home-header-container">
           <div className="home-header-content">
             <div className="left-content">
-              <i class="fas fa-bars"></i>
+              <i className="fas fa-bars"></i>
               <img className="header-logo" src={logo} />
             </div>
             <div className="center-content">
@@ -179,6 +180,7 @@ class HomeHeader extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfor: state.user.userInfor,
     language: state.app.language,
   };
 };
