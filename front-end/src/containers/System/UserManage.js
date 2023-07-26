@@ -13,8 +13,8 @@ import ModalEditUser from "./ModalEditUser";
 import { emitter } from "../../utils/emitter";
 
 class UserManage extends Component {
-  constructor(pors) {
-    super(pors);
+  constructor(props) {
+    super(props);
     this.state = {
       arrUsers: [],
       isOpenModalUser: false,
@@ -81,7 +81,6 @@ class UserManage extends Component {
 
   // su kien button delete
   handleDeleteUser = async (user) => {
-    console.log("delete", user);
     try {
       let res = await deleteNewUserService(user.id);
       if (res && res.errCode === 0) {

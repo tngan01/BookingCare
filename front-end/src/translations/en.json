@@ -49,5 +49,20 @@
             "manage-handbook": "Manage Handbook"
         }
 
+    },
+    "manage-user":{
+        "add": "Add a new user",
+        "email": "Email",
+        "password": "Password",
+        "first-name": "Frist name",
+        "last-name": "Last name",
+        "phone-number": "Phone number",
+        "address": "Address",
+        "gender": "General",
+        "position": "Position",
+        "role": "Role",
+        "image": "Avatar",
+        "save": "SAVE USER",
+        "edit": "SAVE CHANGES"
     }
 }    
