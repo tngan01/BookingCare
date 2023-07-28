@@ -13,7 +13,7 @@
     },
 
     "banner":{
-        "title1": "MEDICAL FOUNDATION",
+        "title1": "MEDICAL PLATFORM",
         "title2": "HOLISTIC HEALTH CARE",
         "specialist-examination": "Specialist examination",
         "telemedicine": "Telemedicine",
@@ -64,5 +64,9 @@
         "image": "Avatar",
         "save": "SAVE USER",
         "edit": "SAVE CHANGES"
+    },
+    "homepage":{
+        "outstanding-doctor":"Last week's featured doctor",
+        "more-info":"More infor"
     }
 }    
