@@ -60,8 +60,8 @@ class OutStandingDoctor extends Component {
                             className="bg-image section-outstanding-doctor"
                             style={{
                               backgroundImage: `url(${imageBase64})`,
-                              width: "150px",
-                              height: "150px",
+                              width: "160px",
+                              height: "160px",
                               borderRadius: "50%",
                             }}
                           />
