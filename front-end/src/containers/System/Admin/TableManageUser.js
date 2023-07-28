@@ -20,7 +20,7 @@ function handleEditorChange({ html, text }) {
   console.log("handleEditorChange", html, text);
 }
 
-class UserManage extends Component {
+class TableManageUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -109,4 +109,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManageUser);
