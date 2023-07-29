@@ -5,6 +5,7 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils/constant";
 import "react-image-lightbox/style.css";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "react-router";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
@@ -23,6 +24,11 @@ class OutStandingDoctor extends Component {
   componentDidMount() {
     this.props.loadTopDoctors();
   }
+  // xem chi tiet bs
+  handleViewDetailDoctor = (doctor) => {
+    console.log("handleViewDetailDoctor", doctor);
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
   render() {
     console.log("positionId", this.props.topDoctorsRedux);
     let arrDoctors = this.state.arrDoctors;
@@ -53,7 +59,11 @@ class OutStandingDoctor extends Component {
                   let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                   let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                   return (
-                    <div className="section-cusPtomize" key={index}>
+                    <div
+                      className="section-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailDoctor(item)}
+                    >
                       <div className="customize-border">
                         <div className="outer-bg">
                           <div
@@ -98,4 +108,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+);

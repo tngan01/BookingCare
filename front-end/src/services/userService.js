@@ -32,6 +32,11 @@ const getAllCodeService = (inputType) => {
 const getTopDoctorHomeService = (limit) => {
   return axios.get(`/api/top-doctor-home?limit=${limit}`);
 };
+
+// thong tin ct bs
+const getDetailInforDoctor = (inputId) => {
+  return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -40,4 +45,5 @@ export {
   editUserService,
   getAllCodeService,
   getTopDoctorHomeService,
+  getDetailInforDoctor,
 };
