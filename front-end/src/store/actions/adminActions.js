@@ -6,6 +6,8 @@ import {
   editUserService,
   deleteNewUserService,
   getTopDoctorHomeService,
+  getAllDoctors,
+  saveDetailDoctorService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -224,6 +226,57 @@ export const fetchTopDoctor = () => {
       console.log("FETCH_TOP_DOCTORS_FAILED", e);
       dispatch({
         type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+// lay thong tin bs
+export const fetchAllDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDoctors();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+          dataDr: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+        });
+      }
+    } catch (e) {
+      console.log("FETCH_ALL_DOCTORS_FAILED", e);
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+      });
+    }
+  };
+};
+
+// luu thong tin chi tiet bs
+export const saveDetailDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await saveDetailDoctorService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Save infor detail doctor susseed!");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS,
+        });
+      } else {
+        console.log("err res", res);
+        toast.error("Save infor detail doctor error!");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTORS_FAILED,
+        });
+      }
+    } catch (e) {
+      toast.error("Save infor detail doctor error!");
+      console.log("SAVE_DETAIL_DOCTORS_FAILED", e);
+      dispatch({
+        type: actionTypes.SAVE_DETAIL_DOCTORS_FAILED,
       });
     }
   };
