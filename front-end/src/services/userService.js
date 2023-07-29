@@ -46,6 +46,8 @@ export {
   editUserService,
   getAllCodeService,
   getTopDoctorHomeService,
+
   getAllDoctors,
   saveDetailDoctorService,
+
 };
