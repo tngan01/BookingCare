@@ -32,10 +32,11 @@ const getAllCodeService = (inputType) => {
 const getTopDoctorHomeService = (limit) => {
   return axios.get(`/api/top-doctor-home?limit=${limit}`);
 };
-
-// thong tin ct bs
-const getDetailInforDoctor = (inputId) => {
-  return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`);
+const getAllDoctors = () => {
+  return axios.get(`/api/get-all-doctors`);
+};
+const saveDetailDoctorService = (data) => {
+  return axios.post("/api/save-infor-doctors", data);
 };
 export {
   handleLoginApi,
@@ -45,5 +46,8 @@ export {
   editUserService,
   getAllCodeService,
   getTopDoctorHomeService,
-  getDetailInforDoctor,
+
+  getAllDoctors,
+  saveDetailDoctorService,
+
 };
