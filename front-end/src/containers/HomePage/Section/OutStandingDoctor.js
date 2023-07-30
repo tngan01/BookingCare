@@ -26,8 +26,9 @@ class OutStandingDoctor extends Component {
   }
   // xem chi tiet bs
   handleViewDetailDoctor = (doctor) => {
-    console.log("handleViewDetailDoctor", doctor);
-    this.props.history.push(`/detail-doctor/${doctor.id}`);
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
   };
   render() {
     console.log("positionId", this.props.topDoctorsRedux);

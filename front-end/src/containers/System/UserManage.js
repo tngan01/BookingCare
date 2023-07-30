@@ -160,7 +160,6 @@ class UserManage extends Component {
               </tr>
               {arrUsers &&
                 arrUsers.map((item, index) => {
-                  console.log("map", item, index);
                   return (
                     <tr>
                       <td>{item.email} </td>
