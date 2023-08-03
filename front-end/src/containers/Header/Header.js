@@ -3,14 +3,39 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu } from "./menuApp";
+import { adminMenu, doctorMenu } from "./menuApp";
 import "./Header.scss";
-import { LANGUAGES } from "../../utils/constant";
+import { LANGUAGES, USER_ROLE } from "../../utils/constant";
 import { FormattedMessage } from "react-intl";
+import _ from "lodash";
+
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuApp: [],
+    };
+  }
   handleChangeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
+
+  componentDidMount() {
+    let { userInfor } = this.props;
+    let menu = [];
+    if (userInfor && !_.isEmpty(userInfor)) {
+      let role = userInfor.roleId;
+      if (role == USER_ROLE.ADMIN) {
+        menu = adminMenu;
+      }
+      if (role === USER_ROLE.DOCTOR) {
+        menu = doctorMenu;
+      }
+      this.setState({
+        menuApp: menu,
+      });
+    }
+  }
   render() {
     const { processLogout, language, userInfor } = this.props;
     return (

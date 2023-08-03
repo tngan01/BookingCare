@@ -30,7 +30,7 @@ class ManageDoctor extends Component {
   componentDidMount() {
     this.props.fetchAllDoctors();
   }
-  //truyn dl vao select
+  //truyen dl vao select
   buildDataInputSelect = (inputData) => {
     let result = [];
     let { language } = this.props;
@@ -174,7 +174,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllDoctors: (id) => dispatch(actions.fetchAllDoctors()),
+    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
     saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
   };
 };
