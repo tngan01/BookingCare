@@ -16,12 +16,28 @@
         outline: none;
         border: none;
         padding: 5px;
+        color: white;
         background: orange;
         cursor: pointer;
         &:hover {
             opacity: 0.9;
         }
     }
+    .create-content-doctor {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        padding: 5px;
+        color: white;
+        background: green;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
     .more-infor {
         display: flex;
         gap: 15px;
