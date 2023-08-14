@@ -19,7 +19,6 @@ const adminReducer = (state = initialState, action) => {
     case actionTypes.FETCH_GENDER_START:
       let copyState = { ...state };
       copyState.isLoadingGender = true;
-      console.log("qwertyui start", action);
       return {
         ...copyState,
       };
