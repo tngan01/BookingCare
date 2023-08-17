@@ -53,6 +53,18 @@ const getScheduleDoctorByDate = (doctorId, date) => {
 const getExtraInforDoctorById = (doctorId) => {
   return axios.get(`api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
 };
+// lay thong tin bs vao model
+const getProfileDoctorById = (doctorId) => {
+  return axios.get(`api/get-profile-doctor-by-id?doctorId=${doctorId}`);
+};
+// dat lich kham benh
+const postPatientBookAppointment = (data) => {
+  return axios.post("/api/patient-book-appointment", data);
+};
+// duong link xac nhan mail
+const postVerifyBookAppointment = (data) => {
+  return axios.post("/api/verify-book-appointment", data);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -67,4 +79,7 @@ export {
   saveBulkScheduleDoctor,
   getScheduleDoctorByDate,
   getExtraInforDoctorById,
+  getProfileDoctorById,
+  postPatientBookAppointment,
+  postVerifyBookAppointment,
 };

@@ -29,7 +29,6 @@ class DoctorExtraInfor extends Component {
           extraInfor: res.date, // date = data
         });
       }
-      console.log("getExtraInforDoctorByIdgetExtraInforDoctorById", res);
     }
   }
 
@@ -42,7 +41,6 @@ class DoctorExtraInfor extends Component {
   };
   render() {
     let { isShowDetailInfor, extraInfor } = this.state;
-    console.log("getExtraInforDoctorById", this.state);
     let { language } = this.props;
     return (
       <div className="doctor-extra-infor-container">

@@ -5,9 +5,10 @@ import "./DoctorSchedule.scss";
 import { getDetailInforDoctor } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 import moment from "moment";
-import localization from "moment/locale/vi";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
+import BookingModal from "./Modal/BookingModal";
+import localization from "moment/locale/vi";
 
 class DoctorSchedule extends Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class DoctorSchedule extends Component {
     this.state = {
       allDays: [],
       allAvailableTime: [],
+      isOpenModalBooking: false,
+      dataScheduleTimeModal: {},
     };
   }
   async componentDidMount() {
@@ -103,9 +106,26 @@ class DoctorSchedule extends Component {
       console.log("timeDisPlay", res);
     }
   };
-
+  // click vao btn khoang t.g de hien thi model
+  handleClickScheduleTime = (time) => {
+    this.setState({
+      isOpenModalBooking: true,
+      dataScheduleTimeModal: time, // truyen data vao modal
+    });
+  };
+  // close model
+  closeBookingModal = () => {
+    this.setState({
+      isOpenModalBooking: false,
+    });
+  };
   render() {
-    let { allDays, allAvailableTime } = this.state;
+    let {
+      allDays,
+      allAvailableTime,
+      isOpenModalBooking,
+      dataScheduleTimeModal,
+    } = this.state;
     let { language } = this.props;
     return (
       <>
@@ -147,6 +167,9 @@ class DoctorSchedule extends Component {
                           className={
                             language === LANGUAGES.VI ? "btn-vie" : "btn-en"
                           }
+                          // click vao btn khoang t.g de hien thi model
+
+                          onClick={() => this.handleClickScheduleTime(item)}
                         >
                           {timeDisPlay}
                         </button>
@@ -169,6 +192,12 @@ class DoctorSchedule extends Component {
             </div>
           </div>
         </div>
+
+        <BookingModal
+          isOpenModal={isOpenModalBooking}
+          dataTime={dataScheduleTimeModal} // truyen data vao modal
+          closeBookingModal={this.closeBookingModal}
+        />
       </>
     );
   }
