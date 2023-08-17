@@ -57,9 +57,13 @@ const getExtraInforDoctorById = (doctorId) => {
 const getProfileDoctorById = (doctorId) => {
   return axios.get(`api/get-profile-doctor-by-id?doctorId=${doctorId}`);
 };
-//
+// dat lich kham benh
 const postPatientBookAppointment = (data) => {
   return axios.post("/api/patient-book-appointment", data);
+};
+// duong link xac nhan mail
+const postVerifyBookAppointment = (data) => {
+  return axios.post("/api/verify-book-appointment", data);
 };
 export {
   handleLoginApi,
@@ -77,4 +81,5 @@ export {
   getExtraInforDoctorById,
   getProfileDoctorById,
   postPatientBookAppointment,
+  postVerifyBookAppointment,
 };

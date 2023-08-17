@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { LANGUAGES } from "../../../utils";
+import { LANGUAGES } from "../../utils";
 
 class DefaultClass extends Component {
   constructor(props) {

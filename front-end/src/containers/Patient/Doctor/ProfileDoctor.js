@@ -43,6 +43,8 @@ class ProfileDoctor extends Component {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  // hien thoi gian
   renderTimeBooking = (dataTime) => {
     let { language } = this.props;
     if (dataTime && !_.isEmpty(dataTime)) {
@@ -83,7 +85,6 @@ class ProfileDoctor extends Component {
       nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
-    console.log("isShowDescriptionDoctor", dataTime);
     return (
       <div className="profile-doctor-container">
         <div className="intro-doctor">
@@ -109,6 +110,7 @@ class ProfileDoctor extends Component {
                     )}
                 </>
               ) : (
+                // hien thoi gian
                 <>{this.renderTimeBooking(dataTime)}</>
               )}
             </div>

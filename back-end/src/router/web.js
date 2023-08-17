@@ -44,9 +44,14 @@ let initWebRoutes = (app) => {
     "/api/get-profile-doctor-by-id",
     doctorController.getProfileDoctorById
   );
+  // dat lich kham benh
   router.post(
     "/api/patient-book-appointment",
     patientControllers.postBookAppointment
+  );
+  router.post(
+    "/api/verify-book-appointment",
+    patientControllers.postVerifyBookAppointment
   );
 
   return app.use("/", router);
