@@ -42,7 +42,7 @@
             "manage-admin": "Quản lý Admin",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng ",
-            "specialty": "Phòng khám",
+            "specialty": "Chuyên khoa",
             "manage-specialty": "Quản lý phòng khám",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
@@ -70,7 +70,8 @@
     },
     "homepage":{
         "outstanding-doctor":"Bác sĩ nổi bật tuần qua",
-        "more-info":"Xem thêm"
+        "more-info":"Xem thêm",
+        "speciality-poplular": "Chuyên khoa phổ biến"
     },
     "manage-schedule":{
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",

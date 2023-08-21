@@ -52,9 +52,9 @@
                 background-size: cover;
                 background-color: #eee;
 
-                &.section-specialty {
-                    background-image: url("../../assets/specialty/co-xuong-khop.jpg");
-                }
+                // &.section-specialty {
+                //     background-image: url("../../assets/specialty/co-xuong-khop.jpg");
+                // }
                 &.section-medical-facility {
                     background-image: url("../../assets/medical-facility/lo-go-viet-duc.jpg");
                 }
@@ -115,7 +115,6 @@
     }
     .section-customize {
         cursor: pointer;
-        border: 1px solid rgb(192, 192, 192);
         padding-right: 10px;
 
         .customize-border {

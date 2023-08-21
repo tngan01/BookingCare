@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 
@@ -9,7 +10,9 @@ class HandBook extends Component {
         <div className="section-container">
           <div className="section-header">
             <span className="title-section">Cẩm nang</span>
-            <button className="btn-section">xem thêm</button>
+            <button className="btn-section">
+              <FormattedMessage id="homepage.more-info" />
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
